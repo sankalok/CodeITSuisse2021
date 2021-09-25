@@ -5,4 +5,4 @@ import codeitsuisse.routes.asteroid
 import codeitsuisse.routes.race
 import codeitsuisse.routes.decoder
 import codeitsuisse.routes.stig
-
+import codeitsuisse.routes.stockhunter
