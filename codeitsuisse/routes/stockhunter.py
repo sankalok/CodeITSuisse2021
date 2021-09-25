@@ -52,80 +52,53 @@ def evaluateStockHunter():
         M = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         rlM = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
+
         for i in range(0, y2+1):
-            for j in range(0, x2+1):
-                if((i == 0 and j == 0) or (i == x2 and j == y2)):
-                    riskIndex = 0
-                    riskLevel = ((riskIndex + gD) % gK)
-                    rlM[j][i] = riskLevel
-                    riskLevel %= 3
-                    if(riskLevel == 0):
-                        M[j][i] = "L"
-                    elif(riskLevel == 1):
-                        M[j][i] = "M"
-                    else:
-                        M[j][i] = "S"
-                    if(M[j][i] == "S"):
-                        grid[j][i] = 1
-                    elif(M[j][i] == "M"):
-                        grid[j][i] = 2
-                    else:
-                        grid[j][i] = 3
-                    continue
-                elif(i != 0 and j == 0):
-                    riskIndex = i * hS
-                    riskLevel = ((riskIndex + gD) % gK)
-                    rlM[j][i] = riskLevel
-                    riskLevel %= 3
-                    if(riskLevel == 0):
-                        M[j][i] = "L"
-                    elif(riskLevel == 1):
-                        M[j][i] = "M"
-                    else:
-                        M[j][i] = "S"
-                    if(M[j][i] == "S"):
-                        grid[j][i] = 1
-                    elif(M[j][i] == "M"):
-                        grid[j][i] = 2
-                    else:
-                        grid[j][i] = 3
-                    continue
-                elif(i == 0 and j != 0):
-                    riskIndex = j * vS
-                    riskLevel = ((riskIndex + gD) % gK)
-                    rlM[j][i] = riskLevel
-                    riskLevel %= 3
-                    if(riskLevel == 0):
-                        M[j][i] = "L"
-                    elif(riskLevel == 1):
-                        M[j][i] = "M"
-                    else:
-                        M[j][i] = "S"
-                    if(M[j][i] == "S"):
-                        grid[j][i] = 1
-                    elif(M[j][i] == "M"):
-                        grid[j][i] = 2
-                    else:
-                        grid[j][i] = 3
-                    continue
+            riskIndex = i * vS
+            riskLevel = ((riskIndex + gD) % gK)
+            rlM[0][i] = riskLevel
+            riskLevel %= 3
+            if(riskLevel == 0):
+                M[0][i] = "L"
+                grid[0][i] = 3
+            elif(riskLevel == 1):
+                M[0][i] = "M"
+                grid[0][i] = 2
+            else:
+                M[0][i] = "S"
+                grid[0][i] = 1
+        
+        for i in range(1, x2+1):
+            riskIndex = i * hS
+            riskLevel = ((riskIndex + gD) % gK)
+            rlM[i][0] = riskLevel
+            riskLevel %= 3
+            if(riskLevel == 0):
+                M[i][0] = "L"
+                grid[i][0] = 3
+            elif(riskLevel == 1):
+                M[i][0] = "M"
+                grid[i][0] = 2
+            else:
+                M[i][0] = "S"
+                grid[i][0] = 1
+
+        for i in range(1, y2+1):
+            for j in range(1, x2+1):
+                riskIndex = rlM[j-1][i] * rlM[j][i-1]
+                riskLevel = ((riskIndex + gD) % gK)
+                rlM[i][j] = riskLevel
+                riskLevel %= 3
+                if(riskLevel == 0):
+                    M[j][i] = "L"
+                    grid[j][i] = 3
+                elif(riskLevel == 1):
+                    M[j][i] = "M"
+                    grid[j][i] = 2
                 else:
-                    riskIndex = rlM[j-1][i] * rlM[j][i-1]
-                    riskLevel = ((riskIndex + gD) % gK)
-                    rlM[i][j] = riskLevel
-                    riskLevel %= 3
-                    if(riskLevel == 0):
-                        M[j][i] = "L"
-                    elif(riskLevel == 1):
-                        M[j][i] = "M"
-                    else:
-                        M[j][i] = "S"
-                    if(M[j][i] == "S"):
-                        grid[j][i] = 1
-                    elif(M[j][i] == "M"):
-                        grid[j][i] = 2
-                    else:
-                        grid[j][i] = 3
-                    continue
+                    M[j][i] = "S"
+                    grid[j][i] = 1
+                    
         r["gridMap"] = M
         minC = minCost(grid, x2, y2, x2, y2)
         r["minimumCost"] = minC
