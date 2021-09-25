@@ -12,7 +12,7 @@ def evaluateAsteroid():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = []
-
+'''
     for t in data['test_cases']:
         r = dict()
         r['input'] = t
@@ -68,6 +68,6 @@ def evaluateAsteroid():
         r['score'] = int(score)
         r['mid'] = mid
         result.append(r)
-
+'''
     logging.info("My result :{}".format(result))
     return json.dumps(data)
