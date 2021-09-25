@@ -56,21 +56,6 @@ def evaluateStockHunter():
         for i in range(0, y2+1):
             riskIndex = i * vS
             riskLevel = ((riskIndex + gD) % gK)
-            rlM[0][i] = riskLevel
-            riskLevel %= 3
-            if(riskLevel == 0):
-                M[0][i] = "L"
-                grid[0][i] = 3
-            elif(riskLevel == 1):
-                M[0][i] = "M"
-                grid[0][i] = 2
-            else:
-                M[0][i] = "S"
-                grid[0][i] = 1
-        
-        for i in range(1, x2+1):
-            riskIndex = i * hS
-            riskLevel = ((riskIndex + gD) % gK)
             rlM[i][0] = riskLevel
             riskLevel %= 3
             if(riskLevel == 0):
@@ -82,23 +67,38 @@ def evaluateStockHunter():
             else:
                 M[i][0] = "S"
                 grid[i][0] = 1
+        
+        for i in range(1, x2+1):
+            riskIndex = i * hS
+            riskLevel = ((riskIndex + gD) % gK)
+            rlM[0][i] = riskLevel
+            riskLevel %= 3
+            if(riskLevel == 0):
+                M[0][i] = "L"
+                grid[0][i] = 3
+            elif(riskLevel == 1):
+                M[0][i] = "M"
+                grid[0][i] = 2
+            else:
+                M[0][i] = "S"
+                grid[0][i] = 1
 
         for i in range(1, y2+1):
             for j in range(1, x2+1):
-                riskIndex = rlM[j-1][i] * rlM[j][i-1]
+                riskIndex = rlM[i-1][j] * rlM[i][j-1]
                 riskLevel = ((riskIndex + gD) % gK)
                 rlM[i][j] = riskLevel
                 riskLevel %= 3
                 if(riskLevel == 0):
-                    M[j][i] = "L"
-                    grid[j][i] = 3
+                    M[i][j] = "L"
+                    grid[i][j] = 3
                 elif(riskLevel == 1):
-                    M[j][i] = "M"
-                    grid[j][i] = 2
+                    M[i][j] = "M"
+                    grid[i][j] = 2
                 else:
-                    M[j][i] = "S"
-                    grid[j][i] = 1
-                    
+                    M[i][j] = "S"
+                    grid[i][j] = 1
+
         r["gridMap"] = M
         minC = minCost(grid, x2, y2, x2, y2)
         r["minimumCost"] = minC
