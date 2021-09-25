@@ -24,8 +24,8 @@ def evaluateStockHunter():
         hS = data["horizontalStepper"]
         vS = data["verticalStepper"]
         
-        M = [[-1 for j in range(0, y2+1)] for i in range(0, x2+1)]
-        rlM = [[-1 for j in range(0, y2+1)] for i in range(0, x2+1)]
+        M = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
+        rlM = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         for i in range(0, y2+1):
             for j in range(0, x2+1):
                 if((i == 0 and j == 0) or (i == x2 and j == y2)):
