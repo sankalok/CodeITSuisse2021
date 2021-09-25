@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 
 @app.route('/stock-hunter', methods=['POST'])
 def evaluateStockHunter():
-    dataList = request.get_json()
+    dataList = request.get_data()
     logging.info("data sent for evaluation {}".format(data))
     
     logging.info("My result :{}".format(result))
