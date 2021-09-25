@@ -8,30 +8,38 @@ from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
 
-def minCost(cost, m, n, x2, y2):
+def findMinCost(cost):
  
-    # Instead of following line, we can use int tc[m+1][n+1] or
-    # dynamically allocate memoery to save space. The following
-    # line is used to keep te program simple and make it working
-    # on all compilers.
-    tc = [[0 for x in range(y2+1)] for x in range(x2+1)]
+    # `M × N` matrix
+    (M, N) = (len(cost), len(cost[0]))
  
-    tc[0][0] = cost[0][0]
+    # `T[i][j]` maintains the minimum cost to reach cell (i, j) from cell (0, 0)
+    T = [[0 for x in range(N)] for y in range(M)]
  
-    # Initialize first column of total cost(tc) array
-    for i in range(1, m+1):
-        tc[i][0] = tc[i-1][0] + cost[i][0]
+    # fill the matrix in a bottom-up manner
+    for i in range(M):
+        for j in range(N):
+            T[i][j] = cost[i][j]
  
-    # Initialize first row of tc array
-    for j in range(1, n+1):
-        tc[0][j] = tc[0][j-1] + cost[0][j]
+            # fill the first row (there is only one way to reach any cell in the
+            # first row from its adjacent left cell)
+            if i == 0 and j > 0:
+                T[0][j] += T[0][j - 1]
  
-    # Construct rest of the tc array
-    for i in range(1, m+1):
-        for j in range(1, n+1):
-            tc[i][j] = min(tc[i-1][j], tc[i][j-1]) + cost[i][j]
+            # fill the first column (there is only one way to reach any cell in
+            # the first column from its adjacent top cell)
+            elif j == 0 and i > 0:
+                T[i][0] += T[i - 1][0]
  
-    return tc[m][n]
+            # fill the rest with the matrix (there are two ways to reach any
+            # cell in the rest of the matrix, from its adjacent
+            # left cell or adjacent top cell)
+            elif i > 0 and j > 0:
+                T[i][j] += min(T[i - 1][j], T[i][j - 1])
+ 
+    # last cell of `T[][]` stores the minimum cost to reach destination cell
+    # (M-1, N-1) from source cell (0, 0)
+    return T[M - 1][N - 1]
 
 @app.route('/stock-hunter', methods=['POST'])
 def evaluateStockHunter():
@@ -51,7 +59,7 @@ def evaluateStockHunter():
         
         M = []
         rlM = []
-        grid = []
+        grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
 
         for i in range(0, y2+1):
             riskIndex = i * vS
@@ -100,7 +108,7 @@ def evaluateStockHunter():
                     grid[i][j] = 1
 
         r["gridMap"] = M
-        minC = minCost(grid, x2, y2, x2, y2)
+        minC = minCost(grid)
         r["minimumCost"] = minC
         result.append(r)
 
