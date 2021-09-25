@@ -29,7 +29,7 @@ def minCost(cost, m, n, x2, y2):
     # Construct rest of the tc array
     for i in range(1, m+1):
         for j in range(1, n+1):
-            tc[i][j] = min(tc[i-1][j-1], tc[i-1][j], tc[i][j-1]) + cost[i][j]
+            tc[i][j] = min(tc[i-1][j], tc[i][j-1]) + cost[i][j]
  
     return tc[m][n]
 
