@@ -8,13 +8,13 @@ from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
 
-def minCost(cost, m, n):
+def minCost(cost, m, n, x2, y2):
  
     # Instead of following line, we can use int tc[m+1][n+1] or
     # dynamically allocate memoery to save space. The following
     # line is used to keep te program simple and make it working
     # on all compilers.
-    tc = [[0 for x in range(n)] for x in range(m)]
+    tc = [[0 for x in range(y2+1)] for x in range(x2+1)]
  
     tc[0][0] = cost[0][0]
  
@@ -100,7 +100,7 @@ def evaluateStockHunter():
                     grid[i][j] = 1
 
         r["gridMap"] = M
-        minC = minCost(grid, x2+1, y2+1)
+        minC = minCost(grid, x2, y2, x2, y2)
         r["minimumCost"] = minC
         result.append(r)
 
