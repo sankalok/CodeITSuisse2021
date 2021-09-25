@@ -10,8 +10,8 @@ logger = logging.getLogger(__name__)
 @app.route('/stock-hunter', methods=['POST'])
 def evaluateStockHunter():
     dataList = request.get_json()
+    result = []
     for data in dataList:
-        result = []
         r = dict()
         x1 = data["entryPoint"]["first"]
         y1 = data["entryPoint"]["second"]
