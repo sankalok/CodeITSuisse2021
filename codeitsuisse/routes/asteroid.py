@@ -69,6 +69,5 @@ def evaluateAsteroid():
         r['mid'] = mid
         result.append(r)
 
-    result = json.dumps(result)
     logging.info("My result :{}".format(result))
-    return result
+    return json.dumps(result)
