@@ -31,7 +31,7 @@ def evaluateAsteroid():
                 score += counter[key] * 2
         r['score'] = int(score)
         mid = len(t) // 2
-        for i in range(mid - 1, mid + 2):
+        for i in range(mid - 2, mid + 3):
             if(t[i-1] == t[i+1]):
                 r['origin'] = i
         result.append(r)
