@@ -8,6 +8,6 @@ from codeitsuisse import app
 logger = logging.getLogger(__name__)
 
 @app.route('/fixedrace', methods=['POST'])
-def evaluate():
+def evaluateRace():
     data = request.data
     return data
