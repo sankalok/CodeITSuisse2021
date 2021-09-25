@@ -10,4 +10,4 @@ logger = logging.getLogger(__name__)
 @app.route('/fixedrace', methods=['POST'])
 def evaluateRace():
     data = request.get_json()
-    return data
+    return json.dumps(data)
