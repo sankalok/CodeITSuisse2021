@@ -13,4 +13,4 @@ def evaluateRace():
     arr = data.split(',')
     numpy.random.permutation(arr)
     d = ",".join(arr)
-    return str(d)
+    return d
