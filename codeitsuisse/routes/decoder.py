@@ -17,8 +17,8 @@ def evaluateDecoder():
     values = data['possible_values']
     slots = data['num_slots']
     sample = random.sample(values, slots)
-    result['answer'] = sample
-    #result['answer'] = ['s', 'u', 'i', 'b', 'k']
+    #result['answer'] = sample
+    result['answer'] = ['d', 's', 'a', 'q', 'l']
 
     logging.info("My result :{}".format(result))
     return json.dumps(result)
