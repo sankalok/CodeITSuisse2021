@@ -11,4 +11,4 @@ logger = logging.getLogger(__name__)
 def evaluateRace():
     data = request.get_data()
     dataArr = data.split(',')
-    return dataArr
+    return jsonify(dataArr)
