@@ -34,6 +34,7 @@ def evaluateStockHunter():
         
         M = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         rlM = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
+        grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         for i in range(0, y2+1):
             for j in range(0, x2+1):
                 if((i == 0 and j == 0) or (i == x2 and j == y2)):
@@ -47,6 +48,12 @@ def evaluateStockHunter():
                         M[j][i] = 'M'
                     else:
                         M[j][i] = 'S'
+                    if(M[j][i] == 'S'):
+                        grid[j][i] = 1
+                    elif(M[j][i] == 'M'):
+                        grid[j][i] = 2
+                    else:
+                        grid[j][i] = 3
                     continue
                 elif(i != 0 and j == 0):
                     riskIndex = i * hS
@@ -59,6 +66,12 @@ def evaluateStockHunter():
                         M[j][i] = 'M'
                     else:
                         M[j][i] = 'S'
+                    if(M[j][i] == 'S'):
+                        grid[j][i] = 1
+                    elif(M[j][i] == 'M'):
+                        grid[j][i] = 2
+                    else:
+                        grid[j][i] = 3
                     continue
                 elif(i == 0 and j != 0):
                     riskIndex = j * vS
@@ -71,6 +84,12 @@ def evaluateStockHunter():
                         M[j][i] = 'M'
                     else:
                         M[j][i] = 'S'
+                    if(M[j][i] == 'S'):
+                        grid[j][i] = 1
+                    elif(M[j][i] == 'M'):
+                        grid[j][i] = 2
+                    else:
+                        grid[j][i] = 3
                     continue
                 else:
                     riskIndex = rlM[j-1][i] * rlM[j][i-1]
@@ -83,17 +102,14 @@ def evaluateStockHunter():
                         M[j][i] = 'M'
                     else:
                         M[j][i] = 'S'
+                    if(M[j][i] == 'S'):
+                        grid[j][i] = 1
+                    elif(M[j][i] == 'M'):
+                        grid[j][i] = 2
+                    else:
+                        grid[j][i] = 3
                     continue
         r["gridMap"] = M
-        grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
-        for i in range(0, y2+1):
-            for j in range(0, x2+1):
-                if(M[j][i] == 'S'):
-                    grid[j][i] = 1
-                elif(M[j][i] == 'M'):
-                    grid[j][i] = 2
-                else:
-                    grid[j][i] = 3
         minC = minCost(grid, x2, y2)
         r['minimumCost'] = minC - grid[0][0]
         result.append(r)
