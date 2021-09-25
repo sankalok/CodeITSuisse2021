@@ -13,7 +13,7 @@ def evaluateStockHunter():
     logging.info("data sent for evaluation {}".format(data))
     
     logging.info("My result :{}".format(result))
-    return json.dumps(dataList)
+    return dataList
 
 
 
