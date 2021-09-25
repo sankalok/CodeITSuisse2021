@@ -66,7 +66,7 @@ def evaluateAsteroid():
             score += (2 * rng)
         mid = (indexes[(start + end - 1) // 2] + indexes[(start + end - 1) // 2 + 1]) // 2
         r['score'] = int(score)
-        r['mid'] = mid
+        r['origin'] = mid
         result.append(r)
 
 
