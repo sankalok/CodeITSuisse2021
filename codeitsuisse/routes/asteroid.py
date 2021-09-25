@@ -70,4 +70,4 @@ def evaluateAsteroid():
         result.append(r)
 
     logging.info("My result :{}".format(result))
-    return json.dumps(result)
+    return json.dumps(data)
