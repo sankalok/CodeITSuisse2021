@@ -32,19 +32,26 @@ def evaluateAsteroid():
             if (r['input'][j] != uniqueS[i]):
                 indexes[i + 1] = j
                 i += 1
-        s = 0
-        l = 1
-        for i in range(0, len(uniqueS)):
-            for j in range(i, len(uniqueS)):
-                check = 1
-                for k in range(0, (j - i) // 2 + 1):
-                    if (uniqueS[i + k] != uniqueS[j - k]):
-                        check = 0
-                if (check != 0 and (j - i + 1) > l):
-                    s = i
-                    l = j - i + 1
-        start = s
-        end = s + l
+
+        s = ''.join(uniqueS)  
+        T = '#'.join('^{}$'.format(s))
+        n = len(T)
+        P = [0] * n
+        C = R = 0
+        for i in range (1, n-1):
+            P[i] = (R > i) and min(R - i, P[2*C - i])
+            while T[i + 1 + P[i]] == T[i - 1 - P[i]]:
+                P[i] += 1
+
+            if i + P[i] > R:
+                C, R = i, i + P[i]
+        maxLen, centerIndex = max((n, i) for i, n in enumerate(P))
+        start = (centerIndex  - maxLen)//2
+        end = (centerIndex  + maxLen)//2
+        uniqueS = []
+        s = s[start:end]
+        for i in s:
+            uniqueS += [i]
         score = 0
         j = end
         indexes += [len(r['input'])]
