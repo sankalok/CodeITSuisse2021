@@ -10,6 +10,7 @@ logger = logging.getLogger(__name__)
 @app.route('/stock-hunter', methods=['POST'])
 def evaluateStockHunter():
     dataList = request.get_json()
+    logging.info("data sent for evaluation {}".format(dataList))
     result = []
     for data in dataList:
         r = dict()
@@ -74,10 +75,12 @@ def evaluateStockHunter():
                     else:
                         M[j][i] = 'S'
                     continue
-        r["gridMap"] = M
-        r["minimumCost"] = 0
-        result.append(r)
-        return json.dumps(result)
+            r["gridMap"] = M
+            r["minimumCost"] = 0
+            result.append(r)
+
+    logging.info("My result :{}".format(result))
+    return json.dumps(result)
 
 
 
