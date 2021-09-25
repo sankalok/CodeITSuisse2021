@@ -36,6 +36,6 @@ def evaluateAsteroid():
                 r['origin'] = i
         result.append(r)
 
-    result = json.dumps(result, indent = 4)
+    result = json.dumps(result)
     logging.info("My result :{}".format(result))
     return result
