@@ -75,9 +75,9 @@ def evaluateStockHunter():
                     else:
                         M[j][i] = 'S'
                     continue
-            r["gridMap"] = M
-            r["minimumCost"] = 0
-            result.append(r)
+        r["gridMap"] = M
+        r["minimumCost"] = 0
+        result.append(r)
 
     logging.info("My result :{}".format(result))
     return json.dumps(result)
