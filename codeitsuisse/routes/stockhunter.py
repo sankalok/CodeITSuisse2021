@@ -76,7 +76,10 @@ def evaluateStockHunter():
                         M[j][i] = 'S'
                     continue
         r["gridMap"] = M
-        r["minimumCost"] = 0
+        for i in range(0, y2+1):
+            for j in range(0, x2+1):
+                if(M[j][i] == 'L'):
+                    rlM[j][i] = 
         result.append(r)
 
     logging.info("My result :{}".format(result))
