@@ -8,7 +8,7 @@ from codeitsuisse import app
 logger = logging.getLogger(__name__)
 
 @app.route('/asteroid', methods=['POST'])
-def evaluate():
+def evaluateAsteroid():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = []
@@ -32,8 +32,8 @@ def evaluate():
         r['score'] = int(score)
         mid = len(t) // 2
         for i in range(mid - 1, mid + 2):
-        if(t[i-1] == t[i+1]):
-            r['origin'] = i
+            if(t[i-1] == t[i+1]):
+                r['origin'] = i
         result.append(r)
 
     result = json.dumps(result)
