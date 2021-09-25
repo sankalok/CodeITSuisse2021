@@ -12,7 +12,7 @@ def evaluateAsteroid():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
     result = []
-    '''
+
     for t in data['test_cases']:
         r = dict()
         r['input'] = t
@@ -40,9 +40,9 @@ def evaluateAsteroid():
                 for k in range(0, (i-j)//2 + 1):
                     if(uniqueS[i+k] != uniqueS[j-k]):
                         check = 0
-                    if(check != 0 and (j-i+1) > l):
-                        s = i
-                        l = j-i+1
+                if(check != 0 and (j-i+1) > l):
+                    s = i
+                    l = j-i+1
         start = s
         end = s+l
         score = 0
@@ -68,7 +68,6 @@ def evaluateAsteroid():
         r['score'] = int(score)
         r['mid'] = mid
         result.append(r)
-    '''
 
     result = json.dumps(result)
     logging.info("My result :{}".format(result))
