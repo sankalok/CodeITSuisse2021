@@ -43,14 +43,14 @@ def evaluateStockHunter():
                     rlM[j][i] = riskLevel
                     riskLevel %= 3
                     if(riskLevel == 0):
-                        M[j][i] = 'L'
+                        M[j][i] = "L"
                     elif(riskLevel == 1):
-                        M[j][i] = 'M'
+                        M[j][i] = "M"
                     else:
-                        M[j][i] = 'S'
-                    if(M[j][i] == 'S'):
+                        M[j][i] = "S"
+                    if(M[j][i] == "S"):
                         grid[j][i] = 1
-                    elif(M[j][i] == 'M'):
+                    elif(M[j][i] == "M"):
                         grid[j][i] = 2
                     else:
                         grid[j][i] = 3
@@ -61,14 +61,14 @@ def evaluateStockHunter():
                     rlM[j][i] = riskLevel
                     riskLevel %= 3
                     if(riskLevel == 0):
-                        M[j][i] = 'L'
+                        M[j][i] = "L"
                     elif(riskLevel == 1):
-                        M[j][i] = 'M'
+                        M[j][i] = "M"
                     else:
-                        M[j][i] = 'S'
-                    if(M[j][i] == 'S'):
+                        M[j][i] = "S"
+                    if(M[j][i] == "S"):
                         grid[j][i] = 1
-                    elif(M[j][i] == 'M'):
+                    elif(M[j][i] == "M"):
                         grid[j][i] = 2
                     else:
                         grid[j][i] = 3
@@ -79,14 +79,14 @@ def evaluateStockHunter():
                     rlM[j][i] = riskLevel
                     riskLevel %= 3
                     if(riskLevel == 0):
-                        M[j][i] = 'L'
+                        M[j][i] = "L"
                     elif(riskLevel == 1):
-                        M[j][i] = 'M'
+                        M[j][i] = "M"
                     else:
-                        M[j][i] = 'S'
-                    if(M[j][i] == 'S'):
+                        M[j][i] = "S"
+                    if(M[j][i] == "S"):
                         grid[j][i] = 1
-                    elif(M[j][i] == 'M'):
+                    elif(M[j][i] == "M"):
                         grid[j][i] = 2
                     else:
                         grid[j][i] = 3
@@ -97,21 +97,21 @@ def evaluateStockHunter():
                     rlM[i][j] = riskLevel
                     riskLevel %= 3
                     if(riskLevel == 0):
-                        M[j][i] = 'L'
+                        M[j][i] = "L"
                     elif(riskLevel == 1):
-                        M[j][i] = 'M'
+                        M[j][i] = "M"
                     else:
-                        M[j][i] = 'S'
-                    if(M[j][i] == 'S'):
+                        M[j][i] = "S"
+                    if(M[j][i] == "S"):
                         grid[j][i] = 1
-                    elif(M[j][i] == 'M'):
+                    elif(M[j][i] == "M"):
                         grid[j][i] = 2
                     else:
                         grid[j][i] = 3
                     continue
         r["gridMap"] = M
         minC = minCost(grid, x2, y2)
-        r['minimumCost'] = minC - grid[0][0]
+        r["minimumCost"] = minC - grid[0][0]
         result.append(r)
 
     logging.info("My result :{}".format(result))
