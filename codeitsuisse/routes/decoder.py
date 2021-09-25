@@ -13,7 +13,7 @@ def evaluateDecoder():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
 
-    result = {}
+    result = dict()
     values = data['possible_values']
     slots = data['num_slots']
     sample = random.sample(values, slots)
