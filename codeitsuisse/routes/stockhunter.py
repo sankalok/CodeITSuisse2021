@@ -7,6 +7,14 @@ from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
 
+def minCost(cost, m, n):
+    if (n < 0 or m < 0):
+        return sys.maxsize
+    elif (m == 0 and n == 0):
+        return cost[m][n]
+    else:
+        return cost[m][n] + min(minCost(cost, m-1, n), minCost(cost, m, n-1) )
+
 @app.route('/stock-hunter', methods=['POST'])
 def evaluateStockHunter():
     dataList = request.get_json()
@@ -76,10 +84,17 @@ def evaluateStockHunter():
                         M[j][i] = 'S'
                     continue
         r["gridMap"] = M
+        grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         for i in range(0, y2+1):
             for j in range(0, x2+1):
-                if(M[j][i] == 'L'):
-                    rlM[j][i] = 
+                if(M[j][i] == 'S'):
+                    grid[j][i] = 1
+                elif(M[j][i] == 'M'):
+                    grid[j][i] = 2
+                else:
+                    grid[j][i] = 3
+        minC = minCost(grid, x2, y2)
+        r['minimumCost'] = minC - grid[0][0]
         result.append(r)
 
     logging.info("My result :{}".format(result))
