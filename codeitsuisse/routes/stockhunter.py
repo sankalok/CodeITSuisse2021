@@ -108,7 +108,7 @@ def evaluateStockHunter():
                     grid[i][j] = 1
 
         r["gridMap"] = M
-        minC = minCost(grid)
+        minC = findMinCost(grid)
         r["minimumCost"] = minC
         result.append(r)
 
