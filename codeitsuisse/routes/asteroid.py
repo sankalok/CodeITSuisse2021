@@ -14,34 +14,59 @@ def evaluateAsteroid():
     result = []
 
     for t in data['test_cases']:
-        r = {}
+        r = dict()
         r['input'] = t
-        uniqueS = ""
+        uniqueS = []
         for ch in r['input']:
             if(len(uniqueS) == 0):
-                uniqueS += ch
+                uniqueS += [ch]
             else:
                 if uniqueS[len(uniqueS) - 1] != ch:
-                    uniqueS += ch
-        if(uniqueS == uniqueS[::-1]):
-            counter = {}
-            for ch in t:
-                if ch not in counter:
-                    counter[ch] = 0
-                counter[ch] += 1
-            score = 0
-            for key in counter.keys():
-                if(counter[key] <= 6):
-                    score += counter[key]
-                elif(counter[key] > 6 and counter[key] < 10):
-                    score += counter[key] * 1.5
-                elif(counter[key] >= 10):
-                    score += counter[key] * 2
-                r['score'] = int(score)
-            mid = len(t) // 2
-            for i in range(mid - 2, mid + 3):
-                if(t[i-1] == t[i+1]):
-                    r['origin'] = i
+                    uniqueS += [ch]
+        indexes = [0]*len(uniqueS)
+        i = 0
+        ch = ''
+        for j in range(0, len(r['input'])):
+            if(j == 0):
+                indexes[i] = j
+            if(r['input'][j] != uniqueS[i]):
+                indexes[i+1] = j
+            i += 1
+        s = 0
+        l = 1
+        for i in range(0, len(uniqueS)):
+            for j in range(i, len(uniqueS)):
+                check = 1
+                for k in range(0, (i-j)//2 + 1):
+                    if(uniqueS[i+k] != uniqueS[j-k]):
+                        check = 0
+                    if(check != 0 and (j-i+1) > l):
+                        s = i
+                        l = j-i+1
+        start = s
+        end = s+l
+        score = 0
+        j = end
+        indexes += [len(r['input'])]
+        for i in range(start, (end+start)//2):
+            rng = indexes[i+1] - indexes[i] + indexes[j] - indexes[j-1]
+            if(rng <= 6):
+                score += rng
+            elif(rng >= 7 and rng <= 9):
+                score += (1.5 * rng)
+            elif(rng >= 10):
+                score += (2 * rng)
+            j -= 1
+        rng = (indexes[(start+end-1)//2 + 1] - indexes[(start+end-1)//2])
+        if(rng <= 6):
+            score += rng
+        elif(rng >= 7 and rng <= 9):
+            score += (1.5 * rng)
+        elif(rng >= 10):
+            score += (2 * rng)
+        mid = (indexes[(start+end-1)//2] + indexes[(start+end-1)//2 + 1]) // 2
+        r['score'] = int(score)
+        r['mid'] = mid
         result.append(r)
 
     result = json.dumps(result)
