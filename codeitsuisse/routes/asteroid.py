@@ -37,7 +37,7 @@ def evaluateAsteroid():
         for i in range(0, len(uniqueS)):
             for j in range(i, len(uniqueS)):
                 check = 1
-                for k in range(0, (i - j) // 2 + 1):
+                for k in range(0, (j - 1) // 2 + 1):
                     if (uniqueS[i + k] != uniqueS[j - k]):
                         check = 0
                 if (check != 0 and (j - i + 1) > l):
