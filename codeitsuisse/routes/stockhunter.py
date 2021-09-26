@@ -50,10 +50,10 @@ def evaluateStockHunter():
         vS = data["verticalStepper"]
         
         M = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
-        rlM = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
+        rlM = [[-1 for i in range(0, y2+5)] for j in range(0, x2+1)]
         grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
 
-        for i in range(0, y2+5):
+        for i in range(0, y2+1):
             riskIndex = i * vS
             riskLevel = ((riskIndex + gD) % gK)
             rlM[i][0] = riskLevel
@@ -100,6 +100,8 @@ def evaluateStockHunter():
                     grid[i][j] = 1
 
         r["gridMap"] = M
+
+        
         minC = minCost(grid, x2, y2, x2, y2)
         r["minimumCost"] = minC
         result.append(r)
