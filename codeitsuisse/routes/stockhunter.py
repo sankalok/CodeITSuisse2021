@@ -53,7 +53,7 @@ def evaluateStockHunter():
         rlM = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
         grid = [[-1 for i in range(0, y2+1)] for j in range(0, x2+1)]
 
-        for i in range(0, y2+1):
+        for i in range(0, y2+5):
             riskIndex = i * vS
             riskLevel = ((riskIndex + gD) % gK)
             rlM[i][0] = riskLevel

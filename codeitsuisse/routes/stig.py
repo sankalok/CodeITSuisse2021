@@ -17,14 +17,12 @@ def evaluateStig():
     for data in dataList:
         fr = []
         t = []
-        
+        r = {'p': 1, 'q': 500000000}
+        count = 1
         for q in data['questions']:
-            fr.append(q['from'])
-            t.append(q['to'])
-    
-        r = dict()
-        r['p'] = max(fr)
-        r['q'] = min(t)
+            if(count % 2 == 1):
+                r['p'] = max(r['p'], q['from'])
+                r['q'] = min(r['q'], q['to'])
         result.append(r)
 
     logging.info("My result :{}".format(result))
