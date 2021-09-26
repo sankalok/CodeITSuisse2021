@@ -3,7 +3,7 @@ import json
 
 import random
 from flask import request, jsonify
-
+from itertool import permutations
 from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
@@ -16,8 +16,11 @@ def evaluateDecoder():
     result = dict()
     values = data['possible_values']
     slots = data['num_slots']
-    sample = random.sample(values, slots)
-    result['answer'] = sample
+    count = 0
+    for p in permutations(values, slots):
+        result['answer'] = list(p)
+        break
+    @result['answer'] = sample
     #result['answer'] = ['f', 'j', 'e', 't', 'h']
 
     logging.info("My result :{}".format(result))
