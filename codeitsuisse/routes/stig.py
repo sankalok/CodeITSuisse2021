@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 @app.route('/stig/perry', methods=['POST'])
 def evaluateStig():
     dataList = request.get_json()
-    logging.info("data sent for evaluation {}".format(data))
+    logging.info("data sent for evaluation {}".format(dataList))
     
     
     result = []
