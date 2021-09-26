@@ -12,17 +12,13 @@ def evaluateStig():
     dataList = request.get_json()
     logging.info("data sent for evaluation {}".format(dataList))
     
-    
     result = []
+    
     for data in dataList:
-        fr = []
-        t = []
-        r = dict()
-        count = 1
+        r = {'p' : 1, 'q' : 50000000}]
         for q in data['questions']:
-            if(count % 2 == 1):
-                r['p'] = min(r['p'], q['from'])
-                r['q'] = max(r['q'], q['to'])
+            r['p'] = min(r['p'], q['from'])
+            r['q'] = max(r['q'], q['to'])
         result.append(r)
 
     logging.info("My result :{}".format(result))
