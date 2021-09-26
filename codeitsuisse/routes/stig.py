@@ -17,7 +17,7 @@ def evaluateStig():
     for data in dataList:
         fr = []
         t = []
-        r = {'p': 1, 'q': 500000000}
+        r = dict()
         count = 1
         for q in data['questions']:
             if(count % 2 == 1):
