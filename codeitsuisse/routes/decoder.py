@@ -20,7 +20,7 @@ def evaluateDecoder():
     for p in permutations(values, slots):
         result['answer'] = list(p)
         break
-    @result['answer'] = sample
+    #result['answer'] = sample
     #result['answer'] = ['f', 'j', 'e', 't', 'h']
 
     logging.info("My result :{}".format(result))
