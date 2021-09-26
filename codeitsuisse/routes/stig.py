@@ -17,7 +17,7 @@ def evaluateStig():
     for data in dataList:
         r = {'p' : 1, 'q' : 50000000}
         r['p'] = max(r['p'], data[0]['from'])
-        r['q'] = min(r['q'], d[0]['to'])
+        r['q'] = min(r['q'], data[0]['to'])
         result.append(r)
 
 
