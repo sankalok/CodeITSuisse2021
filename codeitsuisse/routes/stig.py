@@ -21,8 +21,8 @@ def evaluateStig():
         count = 1
         for q in data['questions']:
             if(count % 2 == 1):
-                r['p'] = max(r['p'], q['from'])
-                r['q'] = min(r['q'], q['to'])
+                r['p'] = min(r['p'], q['from'])
+                r['q'] = max(r['q'], q['to'])
         result.append(r)
 
     logging.info("My result :{}".format(result))
