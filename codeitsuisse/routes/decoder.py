@@ -3,7 +3,7 @@ import json
 
 import random
 from flask import request, jsonify
-from itertool import permutations
+from itertools import permutations
 from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
